@@ -1,39 +1,69 @@
-
-import 'package:easy_hotel/app/modules/hotels_search/controller/hotel_search_controller.dart';
-import 'package:easy_hotel/app/modules/hotels_search/views/hotel_search_home_view.dart';
-import 'package:easy_hotel/app/modules/my_account/controllers/my_account_controller.dart';
-import 'package:easy_hotel/app/modules/rooms/rooms_homepage/controllers/rooms_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:easy_hotel/app/core/utils/show_popup_text.dart';
+import 'package:easy_hotel/app/core/utils/user_manager.dart';
+import 'package:easy_hotel/app/core/values/app_constants.dart';
+import 'package:easy_hotel/app/data/model/spa/dto/request/spa_detail_request_dto.dart';
+import 'package:easy_hotel/app/data/model/spa/dto/request/spa_save_request.dart';
+import 'package:easy_hotel/app/data/model/spa/dto/response/spa_response_dto.dart';
+import 'package:easy_hotel/app/data/repository/spa/spa_repository.dart';
 import 'package:get/get.dart';
 
-import '../../my_account/views/my_account_view.dart';
-import '../../rooms/rooms_homepage/views/rooms_view.dart';
+class SpaDetailsController extends GetxController {
 
-class HomeController extends GetxController {
+  final int id = Get.arguments;
+   RxInt  index = 1.obs;
+  RxInt  serviceIndex = 0.obs;
+  RxInt selectedType = 1.obs;
+  SpaResponse? spa ;
+  final isLoading = false.obs;
+  final servicesSelected = <int>[].obs;
 
-  final pageIndex = 0.obs;
-  List<Widget> pages = const[
-    RoomsView(),
-    MyAccountView(),
-    HotelSearchView()
-  ];
-  @override
+
+
+   @override
   void onInit() {
-    Get.isRegistered<HotelSearchController>() ? Get.find<HotelSearchController>() : Get.put(HotelSearchController());
-    Get.isRegistered<MyAccountController>() ? Get.find<MyAccountController>() : Get.put(MyAccountController());
-    Get.isRegistered<RoomsController>() ? Get.find<RoomsController>() : Get.put(RoomsController());
     super.onInit();
+    getSpaDetail();
+
+
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+
+  getSpaDetail() async {
+    isLoading(true);
+    final request = SpaDetailRequest(
+      id:id ,
+
+    );
+    SpaRepository().getSpaDetail(request,
+        onSuccess: (data) {
+          spa=data.data;
+
+        },
+        onError: (e) => showPopupText( e.toString()),
+        onComplete: () => isLoading(false)
+    );
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+   getSpaSave() async {
+     isLoading(true);
+     final request = SpaSaveRequest(
+       spaId:spa!.id! ,
+       spaItemDTOList: servicesSelected,
+       salesDetailSpaItemDTOList: [],
+       companyId: AppConstants.companyId,
+       createdBy: AppConstants.createdBy,
+       customerId: UserManager().user!.id,
+       branchId: spa!.branchId,
+     );
+     SpaRepository().getSpaSave(request,
+         onSuccess: (data) {
+           showPopupText( "تم الحفظ بنجاح");
+         },
+         onError: (e) => showPopupText( e.toString()),
+         onComplete: () => isLoading(false)
+     );
+   }
 
-  void changeView(int index) => pageIndex.value = index;
+
+
 }

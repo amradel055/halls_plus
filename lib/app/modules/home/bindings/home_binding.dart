@@ -1,12 +1,12 @@
+import 'package:easy_hotel/app/modules/spa/spa_detail/controllers/spa_details_controller.dart';
 import 'package:get/get.dart';
 
-import '../controllers/home_controller.dart';
 
-class HomeBinding extends Bindings {
+class SpaDetailsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomeController>(
-      () => HomeController(),
+    Get.lazyPut<SpaDetailsController>(
+      () => SpaDetailsController(),
     );
   }
 }
