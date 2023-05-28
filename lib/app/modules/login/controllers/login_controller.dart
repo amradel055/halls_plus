@@ -29,5 +29,5 @@ class LoginController extends GetxController {
 
   }
 
-  changePasswordVisibility() => showPassword(!showPassword.value);
+  // changePasswordVisibility() => showPassword(!showPassword.value);
 }

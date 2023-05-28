@@ -19,7 +19,7 @@ class FilterBarWidgets extends GetView<HomeController> {
         .size;
     return GestureDetector(
       onTap: () {
-        controller.index(index);
+
       },
       child: Obx(() {
         return Center(
