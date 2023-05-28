@@ -37,7 +37,14 @@ class LoginView extends GetView<LoginController> {
             ),
             Padding(
               padding:  EdgeInsets.only(top: 50.h),
-              child: TextWidget(AppStrings.Welcome,textColor: Colors.white,weight:FontWeight.bold,size: size.height*.05,),
+              child:Column(
+                children: [
+                  TextWidget(AppStrings.Welcome,textColor: Colors.white,weight:FontWeight.bold,size: size.height*.05,),
+                  TextWidget(AppStrings.hallsService,textColor: Colors.white,weight:FontWeight.bold,size: size.height*.035,),
+
+                ],
+              )
+
             ),
             Container(
               decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.00)),color: Colors.white),
@@ -64,20 +71,10 @@ class LoginView extends GetView<LoginController> {
                       obscure: !controller.showPassword.value,
                       suffixIcon: !controller.showPassword.value ? Icons.visibility : Icons.visibility_off,
                       onChange: (value) => controller.requestDto.password = value,
-                      onSuffixClicked: ()=> controller.changePasswordVisibility(),
+                      // onSuffixClicked: ()=> controller.changePasswordVisibility(),
                       ltr: true,
                       validator: AppValidator.forceValue,
                     )),
-                    SizedBox(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                              onTap: ()=> Get.toNamed(Routes.FORGET_PASSWORD ),
-                              child: const TextWidget(AppStrings.forgetYourPassword,textColor: Colors.red,)),
-                        ],
-                      ),
-                    ),
                     space,
                     ButtonWidget(
                       text: AppStrings.login,
@@ -85,23 +82,10 @@ class LoginView extends GetView<LoginController> {
                       expanded: true,
                       fontColor: Colors.white,
                       fontSize: size.height*.026,
-                      buttonColor: Theme.of(context).primaryColor,
+                      buttonColor: AppColors.appBlue,
                       contentPadding: const EdgeInsets.symmetric(vertical: 10),
                     ),
 
-                    Padding(
-                      padding:  EdgeInsets.only(left:50),
-                      child: Row(
-                          children:[
-                            const TextWidget(AppStrings.haveAccount),
-                            GestureDetector(
-                                onTap: ()=> Get.toNamed(Routes.REGISTER ),
-                                child: const TextWidget(AppStrings.register,textColor: Colors.red,))
-                          ]
-
-
-                      ),
-                    )
 
 
 

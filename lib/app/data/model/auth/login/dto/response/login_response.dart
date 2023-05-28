@@ -56,6 +56,16 @@ import 'package:easy_hotel/app/data/model/base_request.dart';
 
 
 
+// To parse this JSON data, do
+//
+//     final loginResponse = loginResponseFromJson(jsonString);
+
+import 'dart:convert';
+
+LoginResponse loginResponseFromJson(String str) => LoginResponse.fromJson(json.decode(str));
+
+String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
+
 class LoginResponse {
   LoginResponse({
     this.id,
@@ -76,55 +86,24 @@ class LoginResponse {
     this.branchSerial,
     this.igmaOwnerSerial,
     this.userCode,
-    this.code,
     this.name,
-    this.address,
-    this.telephone,
-    this.fax,
     this.mobile,
+    this.age,
+    this.address,
+    this.nationalNum,
+    this.userName,
     this.password,
-    this.personResponsible,
-    this.phone,
-    this.email,
-    this.type,
-    this.postBox,
-    this.discount,
-    this.openBalanceDebit,
-    this.openBalanceCredit,
-    this.balanceLimit,
     this.remark,
-    this.active,
-    this.zip,
-    this.contactPerson,
-    this.phone2,
-    this.openBalanceDate,
-    this.companyName,
-    this.nationId,
-    this.accountBankNumber,
-    this.sponsorName1,
-    this.sponsorPhone1,
-    this.sponsorName2,
-    this.sponsorPhone2,
-    this.birthdate,
-    this.countryId,
-    this.currencyId,
-    this.regionId,
-    this.workTypeId,
-    this.parent,
-    this.supplierType,
-    this.contractorType,
-    this.globalFilter,
-    this.hotelBoking
   });
 
-  int? id;
-  bool? markEdit;
+  int ?id;
+  bool ?markEdit;
   dynamic msg;
   dynamic msgType;
   dynamic markDisable;
-  dynamic createdBy;
-  dynamic createdDate;
-  dynamic index;
+  int ?createdBy;
+  String? createdDate;
+  int ?index;
   dynamic companyId;
   dynamic createdByName;
   dynamic branchId;
@@ -135,45 +114,14 @@ class LoginResponse {
   dynamic branchSerial;
   dynamic igmaOwnerSerial;
   dynamic userCode;
-  dynamic code;
   String? name;
+  String? mobile;
+  int ?age;
   String? address;
-  dynamic telephone;
-  dynamic fax;
-  dynamic mobile;
-  dynamic password;
-  dynamic personResponsible;
-  String? phone;
-  String? email;
-  dynamic type;
-  dynamic postBox;
-  dynamic discount;
-  dynamic openBalanceDebit;
-  dynamic openBalanceCredit;
-  dynamic balanceLimit;
-  dynamic remark;
-  dynamic active;
-  dynamic zip;
-  dynamic contactPerson;
-  dynamic phone2;
-  dynamic openBalanceDate;
-  dynamic companyName;
-  dynamic nationId;
-  dynamic accountBankNumber;
-  dynamic sponsorName1;
-  dynamic sponsorPhone1;
-  dynamic sponsorName2;
-  dynamic sponsorPhone2;
-  dynamic birthdate;
-  dynamic countryId;
-  dynamic currencyId;
-  dynamic regionId;
-  dynamic workTypeId;
-  dynamic parent;
-  dynamic supplierType;
-  dynamic contractorType;
-  dynamic globalFilter;
-  int? hotelBoking;
+  String ?nationalNum;
+  String ?userName;
+  String ?password;
+  String ?remark;
 
   factory LoginResponse.fromJson( dynamic json) => LoginResponse(
     id: json["id"] == null ? null : json["id"],
@@ -181,9 +129,9 @@ class LoginResponse {
     msg: json["msg"],
     msgType: json["msgType"],
     markDisable: json["markDisable"],
-    createdBy: json["createdBy"],
-    createdDate: json["createdDate"],
-    index: json["index"],
+    createdBy: json["createdBy"] == null ? null : json["createdBy"],
+    createdDate: json["createdDate"] == null ? null : json["createdDate"],
+    index: json["index"] == null ? null : json["index"],
     companyId: json["companyId"],
     createdByName: json["createdByName"],
     branchId: json["branchId"],
@@ -194,47 +142,14 @@ class LoginResponse {
     branchSerial: json["branchSerial"],
     igmaOwnerSerial: json["igmaOwnerSerial"],
     userCode: json["userCode"],
-    code: json["code"],
     name: json["name"] == null ? null : json["name"],
+    mobile: json["mobile"] == null ? null : json["mobile"],
+    age: json["age"] == null ? null : json["age"],
     address: json["address"] == null ? null : json["address"],
-    telephone: json["telephone"],
-    fax: json["fax"],
-    mobile: json["mobile"],
-    password: json["password"],
-    personResponsible: json["personResponsible"],
-    phone: json["phone"] == null ? null : json["phone"],
-    email: json["email"] == null ? null : json["email"],
-    type: json["type"],
-    postBox: json["postBox"],
-    discount: json["discount"] == null ? null : json["discount"],
-    openBalanceDebit: json["openBalanceDebit"] == null ? null :  double.parse(json["openBalanceDebit"].toString())  ,
-    openBalanceCredit: json["openBalanceCredit"] == null ? null : double.parse(json["openBalanceCredit"].toString()),
-    balanceLimit: json["balanceLimit"],
-    remark: json["remark"],
-    active: json["active"],
-    zip: json["zip"],
-    contactPerson: json["contactPerson"],
-    phone2: json["phone2"],
-    openBalanceDate: json["openBalanceDate"],
-    companyName: json["companyName"],
-    nationId: json["nationId"],
-    accountBankNumber: json["accountBankNumber"],
-    sponsorName1: json["sponsorName1"],
-    sponsorPhone1: json["sponsorPhone1"],
-    sponsorName2: json["sponsorName2"],
-    sponsorPhone2: json["sponsorPhone2"],
-    birthdate: json["birthdate"],
-    countryId: json["countryId"],
-    currencyId: json["currencyId"],
-    regionId: json["regionId"],
-    workTypeId: json["workTypeId"],
-    parent: json["parent"],
-    supplierType: json["supplierType"],
-    contractorType: json["contractorType"],
-    globalFilter: json["globalFilter"],
-    hotelBoking: json["hotelBoking"] == null ? null : json["hotelBoking"],
-
-
+    nationalNum: json["nationalNum"] == null ? null : json["nationalNum"],
+    userName: json["userName"] == null ? null : json["userName"],
+    password: json["password"] == null ? null : json["password"],
+    remark: json["remark"] == null ? null : json["remark"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -243,9 +158,9 @@ class LoginResponse {
     "msg": msg,
     "msgType": msgType,
     "markDisable": markDisable,
-    "createdBy": createdBy,
-    "createdDate": createdDate,
-    "index": index,
+    "createdBy": createdBy == null ? null : createdBy,
+    "createdDate": createdDate == null ? null : createdDate,
+    "index": index == null ? null : index,
     "companyId": companyId,
     "createdByName": createdByName,
     "branchId": branchId,
@@ -256,45 +171,13 @@ class LoginResponse {
     "branchSerial": branchSerial,
     "igmaOwnerSerial": igmaOwnerSerial,
     "userCode": userCode,
-    "code": code,
     "name": name == null ? null : name,
+    "mobile": mobile == null ? null : mobile,
+    "age": age == null ? null : age,
     "address": address == null ? null : address,
-    "telephone": telephone,
-    "fax": fax,
-    "mobile": mobile,
-    "password": password,
-    "personResponsible": personResponsible,
-    "phone": phone == null ? null : phone,
-    "email": email == null ? null : email,
-    "type": type,
-    "postBox": postBox,
-    "discount": discount == null ? null : discount,
-    "openBalanceDebit": openBalanceDebit == null ? null : openBalanceDebit,
-    "openBalanceCredit": openBalanceCredit == null ? null : openBalanceCredit,
-    "balanceLimit": balanceLimit,
-    "remark": remark,
-    "active": active,
-    "zip": zip,
-    "contactPerson": contactPerson,
-    "phone2": phone2,
-    "openBalanceDate": openBalanceDate,
-    "companyName": companyName,
-    "nationId": nationId,
-    "accountBankNumber": accountBankNumber,
-    "sponsorName1": sponsorName1,
-    "sponsorPhone1": sponsorPhone1,
-    "sponsorName2": sponsorName2,
-    "sponsorPhone2": sponsorPhone2,
-    "birthdate": birthdate,
-    "countryId": countryId,
-    "currencyId": currencyId,
-    "regionId": regionId,
-    "workTypeId": workTypeId,
-    "parent": parent,
-    "supplierType": supplierType,
-    "contractorType": contractorType,
-    "globalFilter": globalFilter,
-    "hotelBoking": hotelBoking == null ? null : hotelBoking,
-
+    "nationalNum": nationalNum == null ? null : nationalNum,
+    "userName": userName == null ? null : userName,
+    "password": password == null ? null : password,
+    "remark": remark == null ? null : remark,
   };
 }

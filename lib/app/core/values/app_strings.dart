@@ -49,7 +49,7 @@ abstract class AppStrings {
   static const spas = "Spa";
   static const spasHotel = "Hotel Spa";
   static const spasCity = "City Spa";
-  static const address = "Address";
+  static const address = "Address:";
   static const directions = "Directions";
   static const workhours = "Work Hours";
   static const readmore = "Read More";
@@ -76,7 +76,7 @@ abstract class AppStrings {
   static const open = "Open";
   static const reserve = "RESERVE";
   static const services = "Services";
-  static const information = "Information";
+  static const active = "active now";
   static const reviews = "Reviews";
   static const photos = "Photos";
   static const prices = "Prices";
@@ -109,6 +109,15 @@ abstract class AppStrings {
   static const hotelsServices = "Hotels Services";
   static const searchHotelForService = "Search Hotel Or City...";
   static const enterHotel = "Enter";
+  static const done = "Done";
+  static const delayed = "delayed";
+  static const allorders = "All Orders";
+  static const invnum = "ّInvoice Num:";
+  static const clientName = "Client Name:";
+  static const clientNum = "Client Num:";
+  static const timeend = "timeend:";
+  static const deliver = "deliver";
+
 
 
 
