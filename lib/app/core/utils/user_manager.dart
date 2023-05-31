@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/auth/login/dto/response/login_response.dart';
+import '../../data/model/user/dto/request/send_fcm_request.dart';
+import '../../data/repository/user/user_repository.dart';
 import '../../routes/app_pages.dart';
 import '../values/languages/app_translation.dart';
 import 'app_storage.dart';
@@ -49,5 +51,9 @@ class UserManager{
   //   await AppStorage.write(AppStorage.TOKEN_EXPIRE_TIME_KEY, data.expireDate.toIso8601String());
   // }
 
-
+  sendNewOrderNotification(String topic , String body){
+    UserRepository().sendNotification(
+        SendFcmRequest(body: body , title:"Easy Hotels", tobic: topic ),
+        onError: (error) => printError());
+  }
 }

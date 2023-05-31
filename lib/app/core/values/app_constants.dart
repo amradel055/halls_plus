@@ -13,7 +13,12 @@ abstract class AppConstants {
   static const PRIVACY_URL = "";
   static const companyId = 159;
   static const createdBy = 354;
-
+  static const cars = "cars" ;
+  static const food = "food" ;
+  static const spa = "spa" ;
+  static const halls = "halls" ;
+  static const polman = "polman" ;
+  static const customer = "customer" ;
 
 
 

@@ -1,4 +1,4 @@
-package com.igma.easy_hotel
+package com.igma.easy_hotel.halls
 
 import io.flutter.embedding.android.FlutterActivity
 

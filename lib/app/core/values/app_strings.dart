@@ -119,7 +119,9 @@ abstract class AppStrings {
   static const deliver = "deliver";
 
 
-
+  static const orderStarted = "تم البدء في الطلب ";
+  static const orderFinished = "تم الانتهاء من الطلب ";
+  static const orderDelivered = "تم الانتهاء من الطلب ";
 
 
 
