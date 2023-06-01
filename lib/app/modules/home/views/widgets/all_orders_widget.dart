@@ -12,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../../../components/app_refresh_indecetor.dart';
+
 
 class AllOrdersWidget extends GetView<HomeController> {
   const AllOrdersWidget({Key? key})
@@ -32,22 +34,25 @@ class AllOrdersWidget extends GetView<HomeController> {
       }
       return SizedBox(
           width: size.width,
-          child: Obx(() {
-            return Column(
-              children: [
-                for(int i = 0; i < controller.allOrders.length; i ++)
-                  OrderContainer(
-                      false,
-                      controller.allOrders[i].id.toString() ?? "0",
-                      controller.allOrders[i].customerId ?? 0,
-                      controller.allOrders[i].id.toString() ?? "0",
-                      controller.allOrders[i].customerName ?? "",
-                      controller.allOrders[i].id.toString(),
-                      i),
+          child: AppRefreshIndicator(
+            onRefresh:() async => await controller.getAllOrders(),
+            child: Obx(() {
+              return Column(
+                children: [
+                  for(int i = 0; i < controller.allOrders.length; i ++)
+                    OrderContainer(
+                        false,
+                        controller.allOrders[i].id.toString() ?? "0",
+                        controller.allOrders[i].customerId ?? 0,
+                        controller.allOrders[i].id.toString() ?? "0",
+                        controller.allOrders[i].customerName ?? "",
+                        controller.allOrders[i].id.toString(),
+                        i),
 
-              ],
-            );
-          })
+                ],
+              );
+            }),
+          )
       );
     });
   }
