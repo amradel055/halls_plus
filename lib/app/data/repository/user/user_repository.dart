@@ -1,10 +1,7 @@
-
-
 import '../../model/user/dto/request/send_fcm_request.dart';
 import '../../provider/api_provider.dart';
 
 class UserRepository {
-
   // updateUser(
   //   UpdateUserPutRequest updateUserPutRequest, {
   //   Function()? beforeSend,
@@ -20,27 +17,26 @@ class UserRepository {
   //       onError: onError);
   // }
 
+  final String apiKey =
+      "AAAAlEq9lFs:APA91bGrzO5fQDFJ6a16rMvXUlJFcMTjcNbpnZNeWeLfi4U88o1bdLh5GHJJeXsWxDF_9FNjCu5S8DcSAr3DRm0aoUhk-NJdDVO8mOJJ-JXY61BdEU2zPybeGCakj2geBpYQE3Gtmkga";
 
-
-
-final String apiKey = "AAAAlEq9lFs:APA91bGrzO5fQDFJ6a16rMvXUlJFcMTjcNbpnZNeWeLfi4U88o1bdLh5GHJJeXsWxDF_9FNjCu5S8DcSAr3DRm0aoUhk-NJdDVO8mOJJ-JXY61BdEU2zPybeGCakj2geBpYQE3Gtmkga";
-  
   sendNotification(
-      SendFcmRequest request, {
-        Function()? onComplete,
-        Function(void)? onSuccess,
-        Function(dynamic error)? onError,
-      }) =>
-      ApiProvider().post<void>('https://fcm.googleapis.com/fcm/send',
+    SendFcmRequest request, {
+    Function()? onComplete,
+    Function(void)? onSuccess,
+    Function(dynamic error)? onError,
+  }) =>
+      ApiProvider().post<void>(
+        'https://fcm.googleapis.com/fcm/send',
         onComplete: onComplete,
         onSuccess: onSuccess,
+        isFcmNotification: true,
         data: request.toJson(),
         header: {
-        "Authorization": "key=$apiKey"
+          'Content-Type': 'application/json',
+          "Authorization": "key=$apiKey"
         },
         onError: onError,
-        convertor: (_) {  },
+        convertor: (_) {},
       );
-
-
 }
